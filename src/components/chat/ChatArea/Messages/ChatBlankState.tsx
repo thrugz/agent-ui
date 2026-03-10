@@ -17,7 +17,7 @@ const ChatBlankState = () => {
       >
         <div className="absolute inset-0 rounded-full bg-red-600/20 blur-3xl" />
         <Image
-          src="/skarnlabs-pyramid.webp"
+          src="/skarn.png"
           alt="Skarnlabs"
           width={140}
           height={140}
