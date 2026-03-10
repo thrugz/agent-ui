@@ -24,13 +24,16 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Agent UI',
-  description:
-    'A modern chat interface for AI agents built with Next.js, Tailwind CSS, and TypeScript. This template provides a ready-to-use UI for interacting with Agno agents.',
+  title: 'Skarnlabs',
+  description: 'Skarnlabs Agent Interface',
+  icons: {
+    icon: '/icon-512.png',
+    apple: '/icon-192.png'
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Agent UI'
+    title: 'Skarnlabs'
   }
 }
 
