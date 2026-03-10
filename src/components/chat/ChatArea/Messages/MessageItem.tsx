@@ -5,7 +5,7 @@ import type { ChatMessage } from '@/types/os'
 import Videos from './Multimedia/Videos'
 import Images from './Multimedia/Images'
 import Audios from './Multimedia/Audios'
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import AgentThinkingLoader from './AgentThinkingLoader'
 
 interface MessageProps {
@@ -68,12 +68,34 @@ const AgentMessage = ({ message }: MessageProps) => {
     )
   }
 
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = () => {
+    const text = message.content || message.response_audio?.transcript || ''
+    if (!text) return
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
   return (
-    <div className="flex flex-row items-start gap-4 font-geist">
+    <div className="group flex flex-row items-start gap-4 font-geist">
       <div className="flex-shrink-0">
         <Icon type="agent" size="sm" />
       </div>
-      {messageContent}
+      <div className="flex w-full min-w-0 flex-col gap-2">
+        {messageContent}
+        {(message.content || message.response_audio?.transcript) && (
+          <button
+            onClick={handleCopy}
+            className="flex items-center gap-1 self-start rounded-md p-1 text-muted-foreground/40 transition-colors hover:text-muted-foreground md:opacity-0 md:group-hover:opacity-100"
+            aria-label="Copy message"
+            type="button"
+          >
+            <Icon type={copied ? 'check' : 'copy'} size="xxs" />
+          </button>
+        )}
+      </div>
     </div>
   )
 }
