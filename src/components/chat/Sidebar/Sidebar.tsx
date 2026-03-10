@@ -246,7 +246,8 @@ const Sidebar = ({
       {/* Mobile hamburger button */}
       <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="fixed left-3 top-3 z-50 flex h-8 w-8 items-center justify-center rounded-lg bg-accent md:hidden"
+        className="fixed left-3 z-50 flex h-8 w-8 items-center justify-center rounded-lg bg-accent md:hidden"
+        style={{ top: 'calc(env(safe-area-inset-top, 0px) + 0.75rem)' }}
         aria-label="Toggle sidebar"
         type="button"
       >
