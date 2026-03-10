@@ -11,6 +11,7 @@ A modern chat interface for AgentOS built with Next.js, Tailwind CSS, and TypeSc
 - 🧩 **Tool Calls Support**: Visualizes agent tool calls and their results
 - 🧠 **Reasoning Steps**: Displays agent reasoning process (when available)
 - 📚 **References Support**: Show sources used by the agent
+- 🎤 **Voice Input**: Record voice messages directly in the browser — mic button toggles recording, audio is sent to the agent and responses include a transcript + audio player
 - 🖼️ **Multi-modality Support**: Handles various content types including images, video, and audio
 - 🎨 **Customizable UI**: Built with Tailwind CSS for easy styling
 - 🧰 **Built with Modern Stack**: Next.js, TypeScript, shadcn/ui, Framer Motion, and more
