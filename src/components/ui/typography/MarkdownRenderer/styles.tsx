@@ -129,6 +129,14 @@ const InlineCode: FC<PreparedTextProps> = ({ children }) => {
   )
 }
 
+const CodeBlock: FC<PreparedTextProps> = ({ children }) => {
+  return (
+    <pre className="w-full max-w-full overflow-x-auto rounded-md bg-background-secondary/50 p-3 text-xs leading-relaxed">
+      {children}
+    </pre>
+  )
+}
+
 const Blockquote = ({ className, ...props }: BlockquoteProps) => (
   <blockquote
     className={cn(className, 'italic', PARAGRAPH_SIZES.body)}
@@ -209,7 +217,7 @@ const Img = ({ src, alt }: ImgProps) => {
 }
 
 const Table = ({ className, ...props }: TableProps) => (
-  <div className="w-full max-w-[560px] overflow-hidden rounded-md border border-border">
+  <div className="w-full max-w-full overflow-hidden rounded-md border border-border">
     <div className="w-full overflow-x-auto">
       <table className={cn(className, 'w-full')} {...filterProps(props)} />
     </div>
@@ -246,12 +254,13 @@ const TableRow = ({ className, ...props }: TableRowProps) => (
 
 const TableCell = ({ className, ...props }: TableCellProps) => (
   <td
-    className={cn(className, 'whitespace-nowrap p-2 font-[400]')}
+    className={cn(className, 'p-2 font-[400]')}
     {...filterProps(props)}
   />
 )
 
 export const components = {
+  pre: CodeBlock,
   h1: Heading1,
   h2: Heading2,
   h3: Heading3,
