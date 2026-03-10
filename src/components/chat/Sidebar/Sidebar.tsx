@@ -262,9 +262,8 @@ const Sidebar = ({
       )}
 
     <motion.aside
-      className={`relative flex h-screen shrink-0 grow-0 flex-col overflow-hidden px-2 py-3 font-dmmono
-        md:relative md:translate-x-0
-        fixed inset-y-0 left-0 z-40
+      className={`fixed inset-y-0 left-0 z-40 flex h-screen shrink-0 grow-0 flex-col overflow-hidden px-2 py-3 font-dmmono
+        md:relative md:inset-auto md:translate-x-0
         ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         transition-transform md:transition-none
       `}
