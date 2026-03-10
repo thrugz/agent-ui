@@ -114,13 +114,11 @@ const ChatBlankState = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-3xl font-[600] tracking-tight"
+          className="flex flex-col items-center gap-y-3 text-2xl font-[600] tracking-tight md:text-3xl"
         >
-          <div className="flex items-center justify-center gap-x-2 whitespace-nowrap font-medium">
-            <span className="flex items-center font-[600]">
-              This is an open-source
-            </span>
-            <span className="inline-flex translate-y-[10px] scale-125 items-center transition-transform duration-200 hover:rotate-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-medium">
+            <span className="font-[600]">This is an open-source</span>
+            <span className="inline-flex translate-y-[4px] scale-110 items-center transition-transform duration-200 hover:rotate-6 md:translate-y-[10px] md:scale-125">
               <Link
                 href={EXTERNAL_LINKS.agno}
                 target="_blank"
@@ -130,10 +128,8 @@ const ChatBlankState = () => {
                 <Icon type="agno-tag" size="default" />
               </Link>
             </span>
-            <span className="flex items-center font-[600]">
-              Agent UI, built with
-            </span>
-            <span className="inline-flex translate-y-[5px] scale-125 items-center">
+            <span className="font-[600]">Agent UI, built with</span>
+            <span className="inline-flex translate-y-[2px] scale-110 items-center md:translate-y-[5px] md:scale-125">
               <div className="relative ml-2 h-[40px] w-[90px]">
                 {TECH_ICONS.map((icon) => (
                   <motion.div
@@ -172,13 +168,13 @@ const ChatBlankState = () => {
               </div>
             </span>
           </div>
-          <p>For the full experience, visit the AgentOS</p>
+          <p className="text-lg font-[400] md:text-2xl">For the full experience, visit the AgentOS</p>
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex justify-center gap-4"
+          className="flex flex-wrap justify-center gap-4"
         >
           <ActionButton
             href={EXTERNAL_LINKS.documentation}
