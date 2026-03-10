@@ -203,16 +203,20 @@ const Endpoint = () => {
 
 const Sidebar = ({
   hasEnvToken,
-  envToken
+  envToken,
+  envEndpoint
 }: {
   hasEnvToken?: boolean
   envToken?: string
+  envEndpoint?: string
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
   const { clearChat, focusChatInput, initialize } = useChatActions()
   const {
     messages,
     selectedEndpoint,
+    setSelectedEndpoint,
     isEndpointActive,
     selectedModel,
     hydrated,
@@ -224,10 +228,13 @@ const Sidebar = ({
   const [teamId] = useQueryState('team')
 
   useEffect(() => {
+    // Apply env endpoint only if no endpoint is stored yet (first load)
+    if (envEndpoint && hydrated && selectedEndpoint === 'http://localhost:7777') {
+      setSelectedEndpoint(envEndpoint)
+    }
     setIsMounted(true)
-
     if (hydrated) initialize()
-  }, [selectedEndpoint, initialize, hydrated, mode])
+  }, [selectedEndpoint, initialize, hydrated, mode, envEndpoint, setSelectedEndpoint])
 
   const handleNewChat = () => {
     clearChat()
@@ -235,15 +242,39 @@ const Sidebar = ({
   }
 
   return (
+    <>
+      {/* Mobile hamburger button */}
+      <button
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        className="fixed left-3 top-3 z-50 flex h-8 w-8 items-center justify-center rounded-lg bg-accent md:hidden"
+        aria-label="Toggle sidebar"
+        type="button"
+      >
+        <Icon type="sheet" size="xs" />
+      </button>
+
+      {/* Mobile overlay */}
+      {isMobileOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-background/60 backdrop-blur-sm md:hidden"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
     <motion.aside
-      className="relative flex h-screen shrink-0 grow-0 flex-col overflow-hidden px-2 py-3 font-dmmono"
+      className={`relative flex h-screen shrink-0 grow-0 flex-col overflow-hidden px-2 py-3 font-dmmono
+        md:relative md:translate-x-0
+        fixed inset-y-0 left-0 z-40
+        ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        transition-transform md:transition-none
+      `}
       initial={{ width: '16rem' }}
       animate={{ width: isCollapsed ? '2.5rem' : '16rem' }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
       <motion.button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute right-2 top-2 z-10 p-1"
+        className="absolute right-2 top-2 z-10 hidden p-1 md:flex"
         aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         type="button"
         whileTap={{ scale: 0.95 }}
@@ -309,6 +340,7 @@ const Sidebar = ({
         )}
       </motion.div>
     </motion.aside>
+    </>
   )
 }
 
