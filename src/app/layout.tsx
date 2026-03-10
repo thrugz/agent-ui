@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { DM_Mono, Geist } from 'next/font/google'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster } from '@/components/ui/sonner'
@@ -15,10 +15,21 @@ const dmMono = DM_Mono({
   weight: '400'
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover'
+}
+
 export const metadata: Metadata = {
   title: 'Agent UI',
   description:
-    'A modern chat interface for AI agents built with Next.js, Tailwind CSS, and TypeScript. This template provides a ready-to-use UI for interacting with Agno agents.'
+    'A modern chat interface for AI agents built with Next.js, Tailwind CSS, and TypeScript. This template provides a ready-to-use UI for interacting with Agno agents.',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Agent UI'
+  }
 }
 
 export default function RootLayout({

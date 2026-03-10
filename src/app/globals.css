@@ -10,6 +10,8 @@
 
   body {
     @apply bg-background/80 text-secondary;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
